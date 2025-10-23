@@ -1,0 +1,1069 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>References and Resources &#8212; Unsupervised ML Course</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=b18a5cff" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=d6b6a36a"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=30646c52"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'references';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Viva Voce Questions" href="viva/viva_questions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">📚 Course Material for Unsupervised Machine Learning - Fall 2025</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/course_logo.png" class="logo__image only-light" alt=""/>
+    <img src="_static/course_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Unsupervised ML</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="modules/index.html">
+    Core Modules
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples/index.html">
+    Practical Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="labs/index.html">
+    Laboratory Assignments
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="datasets/index.html">
+    Datasets
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="viva/index.html">
+    Viva Questions
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    References and Resources
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/USERNAME/unsupervised-ml-docs" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://colab.research.google.com/" title="Colab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-laptop-code fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Colab</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="modules/index.html">
+    Core Modules
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples/index.html">
+    Practical Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="labs/index.html">
+    Laboratory Assignments
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="datasets/index.html">
+    Datasets
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="viva/index.html">
+    Viva Questions
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    References and Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/USERNAME/unsupervised-ml-docs" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://colab.research.google.com/" title="Colab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-laptop-code fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Colab</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">References and Resources</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="references-and-resources">
+<h1>References and Resources<a class="headerlink" href="#references-and-resources" title="Link to this heading">#</a></h1>
+<p>Comprehensive list of textbooks, papers, courses, and tools for unsupervised machine learning.</p>
+<section id="textbooks">
+<h2>Textbooks<a class="headerlink" href="#textbooks" title="Link to this heading">#</a></h2>
+<section id="primary-references">
+<h3>Primary References<a class="headerlink" href="#primary-references" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Pattern Recognition and Machine Learning</strong> (2006)</p>
+<ul class="simple">
+<li><p>Author: Christopher M. Bishop</p></li>
+<li><p>Publisher: Springer</p></li>
+<li><p>ISBN: 978-0387310732</p></li>
+<li><p>Chapters: 9 (Mixture Models), 12 (PCA), 20 (Variational Inference)</p></li>
+<li><p><a class="reference external" href="https://www.microsoft.com/en-us/research/people/cmbishop/prml-book/">Online Version</a></p></li>
+</ul>
+</li>
+<li><p><strong>The Elements of Statistical Learning</strong> (2nd Edition, 2009)</p>
+<ul class="simple">
+<li><p>Authors: Hastie, Tibshirani, Friedman</p></li>
+<li><p>Publisher: Springer</p></li>
+<li><p>ISBN: 978-0387848570</p></li>
+<li><p>Chapters: 14 (Unsupervised Learning)</p></li>
+<li><p><a class="reference external" href="https://hastie.su.domains/ElemStatLearn/">Free PDF</a></p></li>
+</ul>
+</li>
+<li><p><strong>Introduction to Machine Learning</strong> (4th Edition, 2020)</p>
+<ul class="simple">
+<li><p>Author: Ethem Alpaydin</p></li>
+<li><p>Publisher: MIT Press</p></li>
+<li><p>ISBN: 978-0262043793</p></li>
+<li><p>Comprehensive coverage of all ML topics</p></li>
+</ul>
+</li>
+<li><p><strong>Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow</strong> (3rd Edition, 2022)</p>
+<ul class="simple">
+<li><p>Author: Aurélien Géron</p></li>
+<li><p>Publisher: O’Reilly</p></li>
+<li><p>ISBN: 978-1098125974</p></li>
+<li><p>Chapters: 8 (Dimensionality Reduction), 9 (Unsupervised Learning)</p></li>
+<li><p>Excellent practical guide</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="specialized-books">
+<h3>Specialized Books<a class="headerlink" href="#specialized-books" title="Link to this heading">#</a></h3>
+<ol class="arabic simple" start="5">
+<li><p><strong>Clustering Algorithms</strong> (2011)</p>
+<ul class="simple">
+<li><p>Author: Xu, Rui &amp; Wunsch, Donald</p></li>
+<li><p>Publisher: Wiley-IEEE</p></li>
+<li><p>ISBN: 978-0470276808</p></li>
+<li><p>Comprehensive clustering survey</p></li>
+</ul>
+</li>
+<li><p><strong>Introduction to Data Mining</strong> (2nd Edition, 2018)</p>
+<ul class="simple">
+<li><p>Authors: Tan, Steinbach, Karpatne, Kumar</p></li>
+<li><p>Publisher: Pearson</p></li>
+<li><p>ISBN: 978-0133128901</p></li>
+<li><p>Chapters: 7 (Clustering), 6 (Association Analysis)</p></li>
+</ul>
+</li>
+<li><p><strong>Deep Learning</strong> (2016)</p>
+<ul class="simple">
+<li><p>Authors: Goodfellow, Bengio, Courville</p></li>
+<li><p>Publisher: MIT Press</p></li>
+<li><p>ISBN: 978-0262035613</p></li>
+<li><p>Chapter: 14 (Autoencoders)</p></li>
+<li><p><a class="reference external" href="https://www.deeplearningbook.org/">Free Online</a></p></li>
+</ul>
+</li>
+<li><p><strong>Python Machine Learning</strong> (3rd Edition, 2019)</p>
+<ul class="simple">
+<li><p>Authors: Sebastian Raschka, Vahid Mirjalili</p></li>
+<li><p>Publisher: Packt</p></li>
+<li><p>ISBN: 978-1789955750</p></li>
+<li><p>Practical implementations</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="research-papers">
+<h2>Research Papers<a class="headerlink" href="#research-papers" title="Link to this heading">#</a></h2>
+<section id="foundational-papers">
+<h3>Foundational Papers<a class="headerlink" href="#foundational-papers" title="Link to this heading">#</a></h3>
+<p><strong>Clustering:</strong></p>
+<ol class="arabic simple">
+<li><p>MacQueen, J. (1967). <em>Some methods for classification and analysis of multivariate observations.</em>
+5th Berkeley Symposium on Mathematical Statistics and Probability.</p>
+<ul class="simple">
+<li><p>Original K-Means paper</p></li>
+</ul>
+</li>
+<li><p>Ester, M., et al. (1996). <em>A density-based algorithm for discovering clusters in large spatial databases with noise.</em>
+KDD-96.</p>
+<ul class="simple">
+<li><p>DBSCAN algorithm</p></li>
+</ul>
+</li>
+<li><p>Kaufman, L., &amp; Rousseeuw, P. J. (1990). <em>Finding Groups in Data: An Introduction to Cluster Analysis.</em>
+Wiley.</p>
+<ul class="simple">
+<li><p>K-Medoids and PAM algorithm</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Dimensionality Reduction:</strong></p>
+<ol class="arabic simple" start="4">
+<li><p>Jolliffe, I. T. (2002). <em>Principal Component Analysis.</em>
+Springer.</p>
+<ul class="simple">
+<li><p>Comprehensive PCA reference</p></li>
+</ul>
+</li>
+<li><p>van der Maaten, L., &amp; Hinton, G. (2008). <em>Visualizing data using t-SNE.</em>
+Journal of Machine Learning Research, 9, 2579-2605.</p>
+<ul class="simple">
+<li><p>t-SNE algorithm</p></li>
+</ul>
+</li>
+<li><p>McInnes, L., et al. (2018). <em>UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction.</em>
+arXiv:1802.03426.</p>
+<ul class="simple">
+<li><p>Modern alternative to t-SNE</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Association Rules:</strong></p>
+<ol class="arabic simple" start="7">
+<li><p>Agrawal, R., &amp; Srikant, R. (1994). <em>Fast algorithms for mining association rules.</em>
+VLDB, 1215, 487-499.</p>
+<ul class="simple">
+<li><p>Apriori algorithm</p></li>
+</ul>
+</li>
+<li><p>Han, J., et al. (2000). <em>Mining frequent patterns without candidate generation.</em>
+ACM SIGMOD Record, 29(2), 1-12.</p>
+<ul class="simple">
+<li><p>FP-Growth algorithm</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Autoencoders:</strong></p>
+<ol class="arabic simple" start="9">
+<li><p>Hinton, G. E., &amp; Salakhutdinov, R. R. (2006). <em>Reducing the dimensionality of data with neural networks.</em>
+Science, 313(5786), 504-507.</p>
+<ul class="simple">
+<li><p>Deep autoencoders</p></li>
+</ul>
+</li>
+<li><p>Kingma, D. P., &amp; Welling, M. (2013). <em>Auto-encoding variational bayes.</em>
+arXiv:1312.6114.</p>
+<ul class="simple">
+<li><p>Variational Autoencoders (VAE)</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="recent-survey-papers">
+<h3>Recent Survey Papers<a class="headerlink" href="#recent-survey-papers" title="Link to this heading">#</a></h3>
+<ol class="arabic simple" start="11">
+<li><p>Ezugwu, A. E., et al. (2022). <em>A comprehensive survey of clustering algorithms: State-of-the-art machine learning applications, taxonomy, challenges, and future research prospects.</em>
+Engineering Applications of Artificial Intelligence, 110, 104743.</p></li>
+<li><p>Anowar, F., et al. (2021). <em>Conceptual and empirical comparison of dimensionality reduction algorithms (PCA, KPCA, LDA, MDS, SVD, LLE, ISOMAP, LE, ICA, t-SNE).</em>
+Computer Science Review, 40, 100378.</p></li>
+</ol>
+</section>
+</section>
+<section id="online-courses">
+<h2>Online Courses<a class="headerlink" href="#online-courses" title="Link to this heading">#</a></h2>
+<section id="moocs">
+<h3>MOOCs<a class="headerlink" href="#moocs" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Machine Learning Specialization</strong> - Andrew Ng (Coursera)</p>
+<ul class="simple">
+<li><p>URL: <a class="reference external" href="https://www.coursera.org/specializations/machine-learning-introduction">https://www.coursera.org/specializations/machine-learning-introduction</a></p></li>
+<li><p>Weeks 8-9: Unsupervised Learning</p></li>
+<li><p>Excellent foundational course</p></li>
+</ul>
+</li>
+<li><p><strong>Unsupervised Learning, Recommenders, Reinforcement Learning</strong> - Andrew Ng, DeepLearning.AI</p>
+<ul class="simple">
+<li><p>URL: <a class="reference external" href="https://www.coursera.org/learn/unsupervised-learning-recommenders-reinforcement-learning">https://www.coursera.org/learn/unsupervised-learning-recommenders-reinforcement-learning</a></p></li>
+<li><p>Dedicated unsupervised learning course</p></li>
+</ul>
+</li>
+<li><p><strong>Machine Learning</strong> - Stanford (CS229)</p>
+<ul class="simple">
+<li><p>URL: <a class="reference external" href="http://cs229.stanford.edu/">http://cs229.stanford.edu/</a></p></li>
+<li><p>Lecture notes and videos available</p></li>
+<li><p>Advanced material</p></li>
+</ul>
+</li>
+<li><p><strong>Introduction to Machine Learning</strong> - MIT (6.036)</p>
+<ul class="simple">
+<li><p>URL: <a class="reference external" href="https://openlearninglibrary.mit.edu/courses/course-v1:MITx+6.036+1T2019/">https://openlearninglibrary.mit.edu/courses/course-v1:MITx+6.036+1T2019/</a></p></li>
+<li><p>Free MIT OpenCourseWare</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="youtube-channels">
+<h3>YouTube Channels<a class="headerlink" href="#youtube-channels" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>StatQuest with Josh Starmer</strong></p>
+<ul>
+<li><p>Clear explanations of PCA, t-SNE, clustering</p></li>
+<li><p>URL: <a class="reference external" href="https://www.youtube.com/c/joshstarmer">https://www.youtube.com/c/joshstarmer</a></p></li>
+</ul>
+</li>
+<li><p><strong>3Blue1Brown</strong></p>
+<ul>
+<li><p>Visual intuitions for linear algebra and PCA</p></li>
+<li><p>URL: <a class="reference external" href="https://www.youtube.com/c/3blue1brown">https://www.youtube.com/c/3blue1brown</a></p></li>
+</ul>
+</li>
+<li><p><strong>Sentdex (Python Programming)</strong></p>
+<ul>
+<li><p>Practical ML implementations</p></li>
+<li><p>URL: <a class="reference external" href="https://www.youtube.com/c/sentdex">https://www.youtube.com/c/sentdex</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="documentation-tutorials">
+<h2>Documentation &amp; Tutorials<a class="headerlink" href="#documentation-tutorials" title="Link to this heading">#</a></h2>
+<section id="scikit-learn">
+<h3>Scikit-learn<a class="headerlink" href="#scikit-learn" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Official Documentation:</strong> <a class="reference external" href="https://scikit-learn.org/stable/">https://scikit-learn.org/stable/</a></p></li>
+<li><p><strong>User Guide:</strong> <a class="reference external" href="https://scikit-learn.org/stable/user_guide.html">https://scikit-learn.org/stable/user_guide.html</a></p></li>
+<li><p><strong>Examples:</strong> <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/">https://scikit-learn.org/stable/auto_examples/</a></p></li>
+</ul>
+<p><strong>Key Sections:</strong></p>
+<ul class="simple">
+<li><p>Clustering: <a class="reference external" href="https://scikit-learn.org/stable/modules/clustering.html">https://scikit-learn.org/stable/modules/clustering.html</a></p></li>
+<li><p>Dimensionality Reduction: <a class="reference external" href="https://scikit-learn.org/stable/modules/decomposition.html">https://scikit-learn.org/stable/modules/decomposition.html</a></p></li>
+<li><p>Preprocessing: <a class="reference external" href="https://scikit-learn.org/stable/modules/preprocessing.html">https://scikit-learn.org/stable/modules/preprocessing.html</a></p></li>
+</ul>
+</section>
+<section id="tensorflow-keras">
+<h3>TensorFlow &amp; Keras<a class="headerlink" href="#tensorflow-keras" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>TensorFlow:</strong> <a class="reference external" href="https://www.tensorflow.org/">https://www.tensorflow.org/</a></p></li>
+<li><p><strong>Keras:</strong> <a class="reference external" href="https://keras.io/">https://keras.io/</a></p></li>
+<li><p><strong>Autoencoders Tutorial:</strong> <a class="reference external" href="https://www.tensorflow.org/tutorials/generative/autoencoder">https://www.tensorflow.org/tutorials/generative/autoencoder</a></p></li>
+</ul>
+</section>
+<section id="interactive-tutorials">
+<h3>Interactive Tutorials<a class="headerlink" href="#interactive-tutorials" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Kaggle Learn:</strong> <a class="reference external" href="https://www.kaggle.com/learn">https://www.kaggle.com/learn</a></p>
+<ul>
+<li><p>Free micro-courses on ML topics</p></li>
+</ul>
+</li>
+<li><p><strong>Google’s Machine Learning Crash Course:</strong> <a class="reference external" href="https://developers.google.com/machine-learning/crash-course">https://developers.google.com/machine-learning/crash-course</a></p></li>
+<li><p><strong>fast.ai:</strong> <a class="reference external" href="https://www.fast.ai/">https://www.fast.ai/</a></p>
+<ul>
+<li><p>Practical deep learning courses</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="tools-and-libraries">
+<h2>Tools and Libraries<a class="headerlink" href="#tools-and-libraries" title="Link to this heading">#</a></h2>
+<section id="python-libraries">
+<h3>Python Libraries<a class="headerlink" href="#python-libraries" title="Link to this heading">#</a></h3>
+<p><strong>Core ML:</strong></p>
+<ul class="simple">
+<li><p><strong>NumPy:</strong> Numerical computing - <a class="reference external" href="https://numpy.org/">https://numpy.org/</a></p></li>
+<li><p><strong>Pandas:</strong> Data manipulation - <a class="reference external" href="https://pandas.pydata.org/">https://pandas.pydata.org/</a></p></li>
+<li><p><strong>Scikit-learn:</strong> Machine learning - <a class="reference external" href="https://scikit-learn.org/">https://scikit-learn.org/</a></p></li>
+</ul>
+<p><strong>Visualization:</strong></p>
+<ul class="simple">
+<li><p><strong>Matplotlib:</strong> Plotting library - <a class="reference external" href="https://matplotlib.org/">https://matplotlib.org/</a></p></li>
+<li><p><strong>Seaborn:</strong> Statistical visualization - <a class="reference external" href="https://seaborn.pydata.org/">https://seaborn.pydata.org/</a></p></li>
+<li><p><strong>Plotly:</strong> Interactive plots - <a class="reference external" href="https://plotly.com/python/">https://plotly.com/python/</a></p></li>
+</ul>
+<p><strong>Deep Learning:</strong></p>
+<ul class="simple">
+<li><p><strong>TensorFlow:</strong> <a class="reference external" href="https://www.tensorflow.org/">https://www.tensorflow.org/</a></p></li>
+<li><p><strong>PyTorch:</strong> <a class="reference external" href="https://pytorch.org/">https://pytorch.org/</a></p></li>
+<li><p><strong>Keras:</strong> <a class="reference external" href="https://keras.io/">https://keras.io/</a></p></li>
+</ul>
+<p><strong>Specialized:</strong></p>
+<ul class="simple">
+<li><p><strong>mlxtend:</strong> ML extensions (Apriori, FP-Growth) - <a class="reference external" href="http://rasbt.github.io/mlxtend/">http://rasbt.github.io/mlxtend/</a></p></li>
+<li><p><strong>UMAP-learn:</strong> UMAP implementation - <a class="reference external" href="https://umap-learn.readthedocs.io/">https://umap-learn.readthedocs.io/</a></p></li>
+<li><p><strong>HDBSCAN:</strong> Hierarchical DBSCAN - <a class="reference external" href="https://hdbscan.readthedocs.io/">https://hdbscan.readthedocs.io/</a></p></li>
+</ul>
+</section>
+<section id="development-environments">
+<h3>Development Environments<a class="headerlink" href="#development-environments" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Jupyter Notebook:</strong> Interactive computing - <a class="reference external" href="https://jupyter.org/">https://jupyter.org/</a></p></li>
+<li><p><strong>Google Colab:</strong> Free GPU notebooks - <a class="reference external" href="https://colab.research.google.com/">https://colab.research.google.com/</a></p></li>
+<li><p><strong>VS Code:</strong> Editor with Python support - <a class="reference external" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p></li>
+<li><p><strong>PyCharm:</strong> Python IDE - <a class="reference external" href="https://www.jetbrains.com/pycharm/">https://www.jetbrains.com/pycharm/</a></p></li>
+</ul>
+</section>
+</section>
+<section id="datasets-and-benchmarks">
+<h2>Datasets and Benchmarks<a class="headerlink" href="#datasets-and-benchmarks" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>UCI ML Repository:</strong> <a class="reference external" href="https://archive.ics.uci.edu/ml/">https://archive.ics.uci.edu/ml/</a></p></li>
+<li><p><strong>Kaggle Datasets:</strong> <a class="reference external" href="https://www.kaggle.com/datasets">https://www.kaggle.com/datasets</a></p></li>
+<li><p><strong>OpenML:</strong> <a class="reference external" href="https://www.openml.org/">https://www.openml.org/</a></p></li>
+<li><p><strong>Google Dataset Search:</strong> <a class="reference external" href="https://datasetsearch.research.google.com/">https://datasetsearch.research.google.com/</a></p></li>
+</ul>
+</section>
+<section id="blogs-and-articles">
+<h2>Blogs and Articles<a class="headerlink" href="#blogs-and-articles" title="Link to this heading">#</a></h2>
+<section id="recommended-blogs">
+<h3>Recommended Blogs<a class="headerlink" href="#recommended-blogs" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Towards Data Science:</strong> <a class="reference external" href="https://towardsdatascience.com/">https://towardsdatascience.com/</a></p></li>
+<li><p><strong>Machine Learning Mastery:</strong> <a class="reference external" href="https://machinelearningmastery.com/">https://machinelearningmastery.com/</a></p></li>
+<li><p><strong>Distill.pub:</strong> <a class="reference external" href="https://distill.pub/">https://distill.pub/</a> (Visual explanations)</p></li>
+<li><p><strong>Scikit-learn Blog:</strong> <a class="reference external" href="https://blog.scikit-learn.org/">https://blog.scikit-learn.org/</a></p></li>
+</ul>
+</section>
+<section id="specific-articles">
+<h3>Specific Articles<a class="headerlink" href="#specific-articles" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Understanding K-Means Clustering:</strong> <a class="reference external" href="https://stanford.edu/~cpiech/cs221/handouts/kmeans.html">https://stanford.edu/~cpiech/cs221/handouts/kmeans.html</a></p></li>
+<li><p><strong>PCA Step-by-Step:</strong> <a class="reference external" href="https://builtin.com/data-science/step-step-explanation-principal-component-analysis">https://builtin.com/data-science/step-step-explanation-principal-component-analysis</a></p></li>
+<li><p><strong>t-SNE Explained:</strong> <a class="reference external" href="https://distill.pub/2016/misread-tsne/">https://distill.pub/2016/misread-tsne/</a></p></li>
+</ul>
+</section>
+</section>
+<section id="communities-and-forums">
+<h2>Communities and Forums<a class="headerlink" href="#communities-and-forums" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Stack Overflow:</strong> <a class="reference external" href="https://stackoverflow.com/questions/tagged/machine-learning">https://stackoverflow.com/questions/tagged/machine-learning</a></p></li>
+<li><p><strong>Cross Validated:</strong> <a class="reference external" href="https://stats.stackexchange.com/">https://stats.stackexchange.com/</a></p></li>
+<li><p><strong>Reddit - r/MachineLearning:</strong> <a class="reference external" href="https://www.reddit.com/r/MachineLearning/">https://www.reddit.com/r/MachineLearning/</a></p></li>
+<li><p><strong>Kaggle Forums:</strong> <a class="reference external" href="https://www.kaggle.com/discussion">https://www.kaggle.com/discussion</a></p></li>
+<li><p><strong>GitHub:</strong> Search for ML repositories and discussions</p></li>
+</ul>
+</section>
+<section id="software-and-tools">
+<h2>Software and Tools<a class="headerlink" href="#software-and-tools" title="Link to this heading">#</a></h2>
+<section id="clustering-tools">
+<h3>Clustering Tools<a class="headerlink" href="#clustering-tools" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Orange Data Mining:</strong> Visual programming - <a class="reference external" href="https://orangedatamining.com/">https://orangedatamining.com/</a></p></li>
+<li><p><strong>KNIME:</strong> Analytics platform - <a class="reference external" href="https://www.knime.com/">https://www.knime.com/</a></p></li>
+<li><p><strong>RapidMiner:</strong> Data science platform - <a class="reference external" href="https://rapidminer.com/">https://rapidminer.com/</a></p></li>
+</ul>
+</section>
+<section id="visualization-tools">
+<h3>Visualization Tools<a class="headerlink" href="#visualization-tools" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Tableau:</strong> Business intelligence - <a class="reference external" href="https://www.tableau.com/">https://www.tableau.com/</a></p></li>
+<li><p><strong>Power BI:</strong> Microsoft’s BI tool - <a class="reference external" href="https://powerbi.microsoft.com/">https://powerbi.microsoft.com/</a></p></li>
+<li><p><strong>Gephi:</strong> Network visualization - <a class="reference external" href="https://gephi.org/">https://gephi.org/</a></p></li>
+</ul>
+</section>
+<section id="version-control">
+<h3>Version Control<a class="headerlink" href="#version-control" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Git:</strong> <a class="reference external" href="https://git-scm.com/">https://git-scm.com/</a></p></li>
+<li><p><strong>GitHub:</strong> <a class="github reference external" href="https://github.com/"></a></p></li>
+<li><p><strong>GitLab:</strong> <a class="gitlab reference external" href="https://gitlab.com/"></a></p></li>
+</ul>
+</section>
+</section>
+<section id="course-specific-resources">
+<h2>Course-Specific Resources<a class="headerlink" href="#course-specific-resources" title="Link to this heading">#</a></h2>
+<section id="course-repository">
+<h3>Course Repository<a class="headerlink" href="#course-repository" title="Link to this heading">#</a></h3>
+<p>All course materials available at:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/USERNAME/unsupervised-ml-course
+</pre></div>
+</div>
+<p><strong>Contents:</strong></p>
+<ul class="simple">
+<li><p>Jupyter notebooks</p></li>
+<li><p>Datasets</p></li>
+<li><p>Code examples</p></li>
+<li><p>Assignments</p></li>
+<li><p>Projects</p></li>
+</ul>
+</section>
+<section id="recommended-reading-schedule">
+<h3>Recommended Reading Schedule<a class="headerlink" href="#recommended-reading-schedule" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Week</p></th>
+<th class="head"><p>Topic</p></th>
+<th class="head"><p>Reading</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1-2</p></td>
+<td><p>K-Means</p></td>
+<td><p>Bishop Ch. 9.1, ESL Ch. 14.3.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>3-4</p></td>
+<td><p>Hierarchical &amp; DBSCAN</p></td>
+<td><p>Tan Ch. 7.2-7.3</p></td>
+</tr>
+<tr class="row-even"><td><p>5-6</p></td>
+<td><p>Gaussian Mixture Models</p></td>
+<td><p>Bishop Ch. 9.2-9.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>8-9</p></td>
+<td><p>PCA</p></td>
+<td><p>Bishop Ch. 12.1, ESL Ch. 14.5</p></td>
+</tr>
+<tr class="row-even"><td><p>10-11</p></td>
+<td><p>t-SNE &amp; Autoencoders</p></td>
+<td><p>van der Maaten (2008), Goodfellow Ch. 14</p></td>
+</tr>
+<tr class="row-odd"><td><p>12-13</p></td>
+<td><p>Association Rules</p></td>
+<td><p>Tan Ch. 6, Agrawal (1994)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="study-tips">
+<h2>Study Tips<a class="headerlink" href="#study-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Read theory first,</strong> then implement</p></li>
+<li><p><strong>Experiment with code</strong> - modify parameters</p></li>
+<li><p><strong>Visualize results</strong> - understanding over memorization</p></li>
+<li><p><strong>Work on projects</strong> - apply to real data</p></li>
+<li><p><strong>Join communities</strong> - learn from others</p></li>
+<li><p><strong>Document learning</strong> - write blog posts</p></li>
+<li><p><strong>Reproduce papers</strong> - implement from scratch</p></li>
+</ol>
+</section>
+<section id="citation-guidelines">
+<h2>Citation Guidelines<a class="headerlink" href="#citation-guidelines" title="Link to this heading">#</a></h2>
+<p>When using resources in assignments/projects:</p>
+<p><strong>Books:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.
+</pre></div>
+</div>
+<p><strong>Papers:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>van der Maaten, L., &amp; Hinton, G. (2008). Visualizing data using t-SNE.
+Journal of Machine Learning Research, 9, 2579-2605.
+</pre></div>
+</div>
+<p><strong>Websites:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Scikit-learn developers (2023). Clustering. Retrieved from
+https://scikit-learn.org/stable/modules/clustering.html
+</pre></div>
+</div>
+</section>
+<section id="contact-information">
+<h2>Contact Information<a class="headerlink" href="#contact-information" title="Link to this heading">#</a></h2>
+<p><strong>Instructor:</strong></p>
+<p>Dr. Ashwini Kumar Mathur
+Department of Computer Science &amp; Engineering
+Email: <a class="reference external" href="mailto:ashwini&#46;mathur&#37;&#52;&#48;university&#46;edu">ashwini<span>&#46;</span>mathur<span>&#64;</span>university<span>&#46;</span>edu</a>
+Office Hours: Monday &amp; Thursday, 3:00 PM - 5:00 PM</p>
+<p><strong>Teaching Assistants:</strong></p>
+<p>TBA</p>
+<p><strong>Course Website:</strong></p>
+<p><a class="reference external" href="https://your-university.edu/courses/unsupervised-ml">https://your-university.edu/courses/unsupervised-ml</a></p>
+<p>—</p>
+<p><em>Last Updated: October 2025</em></p>
+<p><em>For corrections or additions, please contact the instructor or submit a pull request to the course repository.</em></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="viva/viva_questions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Viva Voce Questions</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#textbooks">Textbooks</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primary-references">Primary References</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specialized-books">Specialized Books</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#research-papers">Research Papers</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#foundational-papers">Foundational Papers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recent-survey-papers">Recent Survey Papers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#online-courses">Online Courses</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moocs">MOOCs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#youtube-channels">YouTube Channels</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-tutorials">Documentation &amp; Tutorials</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">Scikit-learn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow-keras">TensorFlow &amp; Keras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-tutorials">Interactive Tutorials</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-and-libraries">Tools and Libraries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-libraries">Python Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environments">Development Environments</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-benchmarks">Datasets and Benchmarks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blogs-and-articles">Blogs and Articles</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-blogs">Recommended Blogs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-articles">Specific Articles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communities-and-forums">Communities and Forums</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software-and-tools">Software and Tools</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-tools">Clustering Tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-tools">Visualization Tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version Control</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-specific-resources">Course-Specific Resources</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#course-repository">Course Repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-reading-schedule">Recommended Reading Schedule</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#study-tips">Study Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-guidelines">Citation Guidelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact-information">Contact Information</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Ashwini Kumar Mathur.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

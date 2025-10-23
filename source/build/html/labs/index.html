@@ -1,0 +1,907 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Laboratory Assignments &#8212; Unsupervised ML Course</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b18a5cff" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=d6b6a36a"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'labs/index';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lab 1: K-Means Clustering for Customer Segmentation" href="lab01_kmeans.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="../examples/apriori_example.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">📚 Course Material for Unsupervised Machine Learning - Fall 2025</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/course_logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/course_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Unsupervised ML</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../modules/index.html">
+    Core Modules
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Practical Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Laboratory Assignments
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../datasets/index.html">
+    Datasets
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../viva/index.html">
+    Viva Questions
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../references.html">
+    References and Resources
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/USERNAME/unsupervised-ml-docs" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://colab.research.google.com/" title="Colab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-laptop-code fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Colab</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../modules/index.html">
+    Core Modules
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Practical Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Laboratory Assignments
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../datasets/index.html">
+    Datasets
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../viva/index.html">
+    Viva Questions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../references.html">
+    References and Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/USERNAME/unsupervised-ml-docs" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://colab.research.google.com/" title="Colab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-laptop-code fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Colab</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab01_kmeans.html">Lab 1: K-Means Clustering for Customer Segmentation</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Laboratory Assignments</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="laboratory-assignments">
+<h1>Laboratory Assignments<a class="headerlink" href="#laboratory-assignments" title="Link to this heading">#</a></h1>
+<p>Hands-on programming assignments to reinforce theoretical concepts through practical implementation.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab01_kmeans.html">Lab 1: K-Means Clustering for Customer Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lab01_kmeans.html#objective">Objective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab01_kmeans.html#learning-outcomes">Learning Outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab01_kmeans.html#problem-statement">Problem Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab01_kmeans.html#dataset">Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab01_kmeans.html#tasks">Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab01_kmeans.html#deliverables">Deliverables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab01_kmeans.html#evaluation-criteria">Evaluation Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab01_kmeans.html#bonus-tasks-10-extra-points">Bonus Tasks (10 extra points)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab01_kmeans.html#starter-code">Starter Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab01_kmeans.html#helpful-resources">Helpful Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab01_kmeans.html#faqs">FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab01_kmeans.html#submission-checklist">Submission Checklist</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="lab-schedule">
+<h2>Lab Schedule<a class="headerlink" href="#lab-schedule" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 10.0%" />
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Lab #</p></th>
+<th class="head"><p>Title</p></th>
+<th class="head"><p>Topics Covered</p></th>
+<th class="head"><p>Duration</p></th>
+<th class="head"><p>Weightage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>K-Means Clustering</p></td>
+<td><p>Customer segmentation, elbow method</p></td>
+<td><p>2 weeks</p></td>
+<td><p>15%</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>PCA &amp; Visualization</p></td>
+<td><p>Dimensionality reduction, face recognition</p></td>
+<td><p>2 weeks</p></td>
+<td><p>15%</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Hierarchical &amp; DBSCAN</p></td>
+<td><p>Dendrogram analysis, density-based clustering</p></td>
+<td><p>2 weeks</p></td>
+<td><p>15%</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>t-SNE &amp; Autoencoders</p></td>
+<td><p>Non-linear reduction, neural networks</p></td>
+<td><p>2 weeks</p></td>
+<td><p>20%</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Association Rules</p></td>
+<td><p>Market basket analysis, Apriori</p></td>
+<td><p>2 weeks</p></td>
+<td><p>15%</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Course Project</p></td>
+<td><p>End-to-end ML pipeline</p></td>
+<td><p>4 weeks</p></td>
+<td><p>20%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="submission-guidelines">
+<h2>Submission Guidelines<a class="headerlink" href="#submission-guidelines" title="Link to this heading">#</a></h2>
+<section id="format-requirements">
+<h3>Format Requirements<a class="headerlink" href="#format-requirements" title="Link to this heading">#</a></h3>
+<p>Each lab submission must include:</p>
+<ol class="arabic simple">
+<li><p><strong>Jupyter Notebook (.ipynb)</strong></p>
+<ul class="simple">
+<li><p>Well-documented code with markdown explanations</p></li>
+<li><p>Clear section headers</p></li>
+<li><p>All outputs visible</p></li>
+</ul>
+</li>
+<li><p><strong>Python Script (.py)</strong></p>
+<ul class="simple">
+<li><p>Clean, modular code</p></li>
+<li><p>Proper function documentation</p></li>
+<li><p>PEP 8 style guidelines</p></li>
+</ul>
+</li>
+<li><p><strong>Report (PDF)</strong></p>
+<ul class="simple">
+<li><p>Problem statement</p></li>
+<li><p>Methodology</p></li>
+<li><p>Results and visualizations</p></li>
+<li><p>Analysis and conclusions</p></li>
+<li><p>References</p></li>
+</ul>
+</li>
+<li><p><strong>Dataset (if custom)</strong></p>
+<ul class="simple">
+<li><p>CSV or appropriate format</p></li>
+<li><p>README explaining features</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="file-naming-convention">
+<h3>File Naming Convention<a class="headerlink" href="#file-naming-convention" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>RollNumber_LabNumber_Name.ext
+
+Examples:
+- 2021CS001_Lab01_KMeans.ipynb
+- 2021CS001_Lab01_KMeans.py
+- 2021CS001_Lab01_Report.pdf
+</pre></div>
+</div>
+</section>
+<section id="code-quality-standards">
+<h3>Code Quality Standards<a class="headerlink" href="#code-quality-standards" title="Link to this heading">#</a></h3>
+<p><strong>Required:</strong></p>
+<ul class="simple">
+<li><p><strong>Comments:</strong> Explain complex logic</p></li>
+<li><p><strong>Docstrings:</strong> For all functions/classes</p></li>
+<li><p><strong>Variable names:</strong> Descriptive, not x, y, z</p></li>
+<li><p><strong>Imports:</strong> Organized at top</p></li>
+<li><p><strong>Error handling:</strong> Try-except blocks where needed</p></li>
+<li><p><strong>Reproducibility:</strong> Set random seeds</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_wcss</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">k_range</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate Within-Cluster Sum of Squares for different K values.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : array-like, shape (n_samples, n_features)</span>
+<span class="sd">        Input data for clustering</span>
+<span class="sd">    k_range : iterable</span>
+<span class="sd">        Range of K values to test</span>
+<span class="sd">    random_state : int, default=42</span>
+<span class="sd">        Random seed for reproducibility</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    wcss_values : list</span>
+<span class="sd">        WCSS for each K value</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; wcss = calculate_wcss(X, range(1, 11))</span>
+<span class="sd">    &gt;&gt;&gt; print(wcss)</span>
+<span class="sd">    [1500.2, 850.3, 420.1, ...]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wcss_values</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">k_range</span><span class="p">:</span>
+        <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">wcss_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">wcss_values</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="evaluation-rubric">
+<h2>Evaluation Rubric<a class="headerlink" href="#evaluation-rubric" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 15.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Criteria</p></th>
+<th class="head"><p>Points</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Correctness</strong></p></td>
+<td><p>40</p></td>
+<td><p>Algorithm implementation, results accuracy</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Code Quality</strong></p></td>
+<td><p>20</p></td>
+<td><p>Style, documentation, organization</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Analysis</strong></p></td>
+<td><p>20</p></td>
+<td><p>Interpretation, insights, conclusions</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Visualization</strong></p></td>
+<td><p>10</p></td>
+<td><p>Clear plots, proper labels, aesthetics</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Report</strong></p></td>
+<td><p>10</p></td>
+<td><p>Clarity, completeness, formatting</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="late-submission-policy">
+<h2>Late Submission Policy<a class="headerlink" href="#late-submission-policy" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Within 24 hours:</strong> 10% penalty</p></li>
+<li><p><strong>24-48 hours:</strong> 25% penalty</p></li>
+<li><p><strong>48-72 hours:</strong> 50% penalty</p></li>
+<li><p><strong>After 72 hours:</strong> Not accepted (0 marks)</p></li>
+</ul>
+<p><strong>Exceptions:</strong> Medical emergencies with documentation</p>
+</section>
+<section id="academic-integrity">
+<h2>Academic Integrity<a class="headerlink" href="#academic-integrity" title="Link to this heading">#</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Plagiarism is strictly prohibited!</strong></p>
+<ul class="simple">
+<li><p>Write your own code</p></li>
+<li><p>Cite external resources</p></li>
+<li><p>Discuss concepts, not copy code</p></li>
+<li><p>Use plagiarism detection tools</p></li>
+</ul>
+<p><strong>Consequences:</strong> Zero marks, disciplinary action</p>
+</div>
+<section id="collaboration-policy">
+<h3>Collaboration Policy<a class="headerlink" href="#collaboration-policy" title="Link to this heading">#</a></h3>
+<p><strong>Allowed:</strong></p>
+<ul class="simple">
+<li><p>Discussing high-level approaches</p></li>
+<li><p>Helping debug general errors</p></li>
+<li><p>Sharing publicly available resources</p></li>
+</ul>
+<p><strong>Not Allowed:</strong></p>
+<ul class="simple">
+<li><p>Sharing code files</p></li>
+<li><p>Copying from online solutions</p></li>
+<li><p>Working together on implementation</p></li>
+</ul>
+</section>
+</section>
+<section id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Link to this heading">#</a></h2>
+<p><strong>Getting Help:</strong></p>
+<ul class="simple">
+<li><p>Office hours: Monday &amp; Thursday, 3-5 PM</p></li>
+<li><p>Discussion forum on LMS</p></li>
+<li><p>TA sessions: Wednesday, 4-6 PM</p></li>
+<li><p>Email: <a class="reference external" href="mailto:ashwini&#46;mathur&#37;&#52;&#48;university&#46;edu">ashwini<span>&#46;</span>mathur<span>&#64;</span>university<span>&#46;</span>edu</a></p></li>
+</ul>
+<p><strong>Useful Links:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/">Scikit-learn Documentation</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/user_guide/index.html">Pandas User Guide</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/gallery/index.html">Matplotlib Gallery</a></p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/tutorial.html">Seaborn Tutorial</a></p></li>
+</ul>
+</section>
+<section id="lab-environment-setup">
+<h2>Lab Environment Setup<a class="headerlink" href="#lab-environment-setup" title="Link to this heading">#</a></h2>
+<p><strong>Option 1: Google Colab (Recommended)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All required packages pre-installed</span>
+<span class="c1"># No setup needed!</span>
+<span class="c1"># Access at: https://colab.research.google.com/</span>
+</pre></div>
+</div>
+<p><strong>Option 2: Local Installation</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create virtual environment</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>ml_lab_env
+<span class="nb">source</span><span class="w"> </span>ml_lab_env/bin/activate<span class="w">  </span><span class="c1"># On Windows: ml_lab_env\Scripts\activate</span>
+
+<span class="c1"># Install packages</span>
+pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>pandas<span class="w"> </span>matplotlib<span class="w"> </span>seaborn<span class="w"> </span>scikit-learn
+pip<span class="w"> </span>install<span class="w"> </span>jupyter<span class="w"> </span>notebook<span class="w"> </span>plotly
+
+<span class="c1"># Launch Jupyter</span>
+jupyter<span class="w"> </span>notebook
+</pre></div>
+</div>
+<p><strong>Option 3: Anaconda</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create conda environment</span>
+conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>ml_lab<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9
+conda<span class="w"> </span>activate<span class="w"> </span>ml_lab
+
+<span class="c1"># Install packages</span>
+conda<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>pandas<span class="w"> </span>matplotlib<span class="w"> </span>seaborn<span class="w"> </span>scikit-learn<span class="w"> </span>jupyter
+
+<span class="c1"># Launch</span>
+jupyter<span class="w"> </span>notebook
+</pre></div>
+</div>
+</section>
+<section id="tips-for-success">
+<h2>Tips for Success<a class="headerlink" href="#tips-for-success" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Start Early:</strong> Don’t wait until the deadline</p></li>
+<li><p><strong>Read Instructions:</strong> Carefully review requirements</p></li>
+<li><p><strong>Test Thoroughly:</strong> Run code multiple times with different parameters</p></li>
+<li><p><strong>Comment as You Code:</strong> Don’t leave documentation for later</p></li>
+<li><p><strong>Backup Regularly:</strong> Use Git or cloud storage</p></li>
+<li><p><strong>Ask Questions:</strong> Clarify doubts early</p></li>
+<li><p><strong>Review Examples:</strong> Study provided example notebooks</p></li>
+<li><p><strong>Version Control:</strong> Keep track of changes</p></li>
+</ol>
+</section>
+<section id="common-mistakes-to-avoid">
+<h2>Common Mistakes to Avoid<a class="headerlink" href="#common-mistakes-to-avoid" title="Link to this heading">#</a></h2>
+<p>❌ <strong>Not setting random seeds</strong> → Non-reproducible results</p>
+<p>❌ <strong>Forgetting to scale data</strong> → Poor clustering performance</p>
+<p>❌ <strong>Not handling missing values</strong> → Runtime errors</p>
+<p>❌ <strong>Hardcoding paths</strong> → Code won’t run on other machines</p>
+<p>❌ <strong>No error handling</strong> → Crashes on edge cases</p>
+<p>❌ <strong>Poor variable names</strong> → Unreadable code</p>
+<p>❌ <strong>Missing visualizations</strong> → Hard to interpret results</p>
+<p>✅ <strong>Follow best practices from examples!</strong></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../examples/apriori_example.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lab01_kmeans.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 1: K-Means Clustering for Customer Segmentation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-schedule">Lab Schedule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-guidelines">Submission Guidelines</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format-requirements">Format Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-naming-convention">File Naming Convention</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-quality-standards">Code Quality Standards</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-rubric">Evaluation Rubric</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#late-submission-policy">Late Submission Policy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#academic-integrity">Academic Integrity</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collaboration-policy">Collaboration Policy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-environment-setup">Lab Environment Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-for-success">Tips for Success</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes-to-avoid">Common Mistakes to Avoid</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Ashwini Kumar Mathur.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

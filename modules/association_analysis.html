@@ -1,0 +1,1145 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Association Analysis &#8212; Unsupervised ML Course</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b18a5cff" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=d6b6a36a"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]], "processEscapes": true, "processEnvironments": true}, "options": {"skipHtmlTags": ["script", "noscript", "style", "textarea", "pre"]}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules/association_analysis';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Practical Examples" href="../examples/index.html" />
+    <link rel="prev" title="Dimensionality Reduction" href="dimensionality_reduction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">📚 Course Material for Unsupervised Machine Learning - Fall 2025</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/course_logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/course_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Unsupervised ML</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Core Modules
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Practical Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../labs/index.html">
+    Laboratory Assignments
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../datasets/index.html">
+    Datasets
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../viva/index.html">
+    Viva Questions
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../references.html">
+    References and Resources
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/USERNAME/unsupervised-ml-docs" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://colab.research.google.com/" title="Colab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-laptop-code fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Colab</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Core Modules
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Practical Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../labs/index.html">
+    Laboratory Assignments
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../datasets/index.html">
+    Datasets
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../viva/index.html">
+    Viva Questions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../references.html">
+    References and Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/USERNAME/unsupervised-ml-docs" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://colab.research.google.com/" title="Colab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-laptop-code fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Colab</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="clustering.html">Clustering Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimensionality_reduction.html">Dimensionality Reduction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Association Analysis</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Core Modules</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Association Analysis</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="association-analysis">
+<h1>Association Analysis<a class="headerlink" href="#association-analysis" title="Link to this heading">#</a></h1>
+<p>Association analysis discovers interesting relationships and patterns in large transactional datasets.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p><strong>Definition:</strong> Association rule mining identifies frequent itemsets and derives rules that show relationships between items.</p>
+<p><strong>Applications:</strong></p>
+<ul class="simple">
+<li><p>Market basket analysis</p></li>
+<li><p>Recommendation systems</p></li>
+<li><p>Web usage mining</p></li>
+<li><p>Medical diagnosis</p></li>
+<li><p>Bioinformatics</p></li>
+</ul>
+</section>
+<section id="key-concepts">
+<h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h2>
+<section id="terminology">
+<h3>Terminology<a class="headerlink" href="#terminology" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Transaction:</strong> A set of items purchased together</p></li>
+<li><p><strong>Itemset:</strong> A collection of one or more items</p></li>
+<li><p><strong>Support:</strong> Frequency of itemset occurrence</p></li>
+<li><p><strong>Confidence:</strong> Conditional probability of rule</p></li>
+<li><p><strong>Lift:</strong> Strength of association</p></li>
+</ul>
+</section>
+<section id="example-transaction-database">
+<h3>Example Transaction Database<a class="headerlink" href="#example-transaction-database" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table" id="id4">
+<caption><span class="caption-text">Supermarket Transactions</span><a class="headerlink" href="#id4" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>TID</p></th>
+<th class="head"><p>Items</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>T1</p></td>
+<td><p>{Bread, Milk}</p></td>
+</tr>
+<tr class="row-odd"><td><p>T2</p></td>
+<td><p>{Bread, Diaper, Beer, Eggs}</p></td>
+</tr>
+<tr class="row-even"><td><p>T3</p></td>
+<td><p>{Milk, Diaper, Beer, Cola}</p></td>
+</tr>
+<tr class="row-odd"><td><p>T4</p></td>
+<td><p>{Bread, Milk, Diaper, Beer}</p></td>
+</tr>
+<tr class="row-even"><td><p>T5</p></td>
+<td><p>{Bread, Milk, Diaper, Cola}</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="association-rules">
+<h2>Association Rules<a class="headerlink" href="#association-rules" title="Link to this heading">#</a></h2>
+<section id="basic-formulation">
+<h3>Basic Formulation<a class="headerlink" href="#basic-formulation" title="Link to this heading">#</a></h3>
+<p>An association rule is an implication:</p>
+<div class="math notranslate nohighlight">
+\[X \Rightarrow Y\]</div>
+<p>where <span class="math notranslate nohighlight">\(X, Y \subseteq I\)</span> (itemsets), and <span class="math notranslate nohighlight">\(X \cap Y = \emptyset\)</span></p>
+<p><strong>Example:</strong> <span class="math notranslate nohighlight">\(\{\text{Bread}, \text{Diaper}\} \Rightarrow \{\text{Beer}\}\)</span></p>
+<p><em>Interpretation:</em> Customers who buy bread and diapers also tend to buy beer.</p>
+</section>
+<section id="support">
+<h3>Support<a class="headerlink" href="#support" title="Link to this heading">#</a></h3>
+<p>Support measures how frequently an itemset appears:</p>
+<div class="math notranslate nohighlight">
+\[\text{support}(X) = \frac{|\{t \in T : X \subseteq t\}|}{|T|}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T\)</span> = set of all transactions</p></li>
+<li><p><span class="math notranslate nohighlight">\(t\)</span> = individual transaction</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="math notranslate nohighlight">
+\[\text{support}(\{\text{Bread}\}) = \frac{4}{5} = 0.8 = 80\%\]</div>
+</section>
+<section id="confidence">
+<h3>Confidence<a class="headerlink" href="#confidence" title="Link to this heading">#</a></h3>
+<p>Confidence measures the reliability of the rule:</p>
+<div class="math notranslate nohighlight">
+\[\text{confidence}(X \Rightarrow Y) = \frac{\text{support}(X \cup Y)}{\text{support}(X)}\]</div>
+<p><strong>Example:</strong></p>
+<div class="math notranslate nohighlight">
+\[\text{confidence}(\{\text{Bread}\} \Rightarrow \{\text{Milk}\}) = \frac{3/5}{4/5} = \frac{3}{4} = 75\%\]</div>
+</section>
+<section id="lift">
+<h3>Lift<a class="headerlink" href="#lift" title="Link to this heading">#</a></h3>
+<p>Lift measures how much more likely <span class="math notranslate nohighlight">\(Y\)</span> is purchased when <span class="math notranslate nohighlight">\(X\)</span> is purchased:</p>
+<div class="math notranslate nohighlight">
+\[\text{lift}(X \Rightarrow Y) = \frac{\text{confidence}(X \Rightarrow Y)}{\text{support}(Y)} = \frac{\text{support}(X \cup Y)}{\text{support}(X) \times \text{support}(Y)}\]</div>
+<p><strong>Interpretation:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{lift} = 1\)</span>: No association</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{lift} &gt; 1\)</span>: Positive association</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{lift} &lt; 1\)</span>: Negative association</p></li>
+</ul>
+</section>
+</section>
+<section id="apriori-algorithm">
+<h2>Apriori Algorithm<a class="headerlink" href="#apriori-algorithm" title="Link to this heading">#</a></h2>
+<section id="concept">
+<h3>Concept<a class="headerlink" href="#concept" title="Link to this heading">#</a></h3>
+<p>Apriori uses a “bottom-up” approach to generate frequent itemsets by exploiting the downward closure property.</p>
+<p><strong>Apriori Principle:</strong> If an itemset is frequent, all its subsets must also be frequent.</p>
+<div class="math notranslate nohighlight">
+\[\text{If } \text{support}(X) &lt; \text{min\_support}, \text{ then } \text{support}(X \cup Y) &lt; \text{min\_support}\]</div>
+</section>
+<section id="algorithm-steps">
+<h3>Algorithm Steps<a class="headerlink" href="#algorithm-steps" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Algorithm: Apriori
+
+Input:
+  - Transaction database D
+  - Minimum support threshold min_sup
+
+Output:
+  - All frequent itemsets
+
+1. Scan database to find frequent 1-itemsets L₁
+
+2. For k = 2 to max_itemset_size:
+   a. Generate candidate k-itemsets Cₖ from Lₖ₋₁
+   b. Prune Cₖ using Apriori principle
+   c. Scan database to count support of candidates in Cₖ
+   d. Lₖ = {itemsets in Cₖ with support ≥ min_sup}
+
+3. Return L = ⋃ₖ Lₖ
+</pre></div>
+</div>
+</section>
+<section id="candidate-generation">
+<h3>Candidate Generation<a class="headerlink" href="#candidate-generation" title="Link to this heading">#</a></h3>
+<p><strong>Join Step:</strong> Combine (k-1)-itemsets to create k-itemsets</p>
+<p><strong>Example:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L_2 = \{\{A,B\}, \{A,C\}, \{A,D\}, \{B,C\}, \{B,D\}, \{C,D\}\}\)</span></p></li>
+<li><p>Join <span class="math notranslate nohighlight">\(\{A,B\}\)</span> and <span class="math notranslate nohighlight">\(\{A,C\}\)</span> → <span class="math notranslate nohighlight">\(\{A,B,C\}\)</span></p></li>
+</ul>
+<p><strong>Prune Step:</strong> Remove candidates with infrequent subsets</p>
+</section>
+<section id="implementation">
+<h3>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mlxtend.frequent_patterns</span><span class="w"> </span><span class="kn">import</span> <span class="n">apriori</span><span class="p">,</span> <span class="n">association_rules</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mlxtend.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransactionEncoder</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Sample transaction data</span>
+<span class="n">transactions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Diaper&#39;</span><span class="p">,</span> <span class="s1">&#39;Beer&#39;</span><span class="p">,</span> <span class="s1">&#39;Eggs&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Milk&#39;</span><span class="p">,</span> <span class="s1">&#39;Diaper&#39;</span><span class="p">,</span> <span class="s1">&#39;Beer&#39;</span><span class="p">,</span> <span class="s1">&#39;Cola&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">,</span> <span class="s1">&#39;Diaper&#39;</span><span class="p">,</span> <span class="s1">&#39;Beer&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">,</span> <span class="s1">&#39;Diaper&#39;</span><span class="p">,</span> <span class="s1">&#39;Cola&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="c1"># Transform to binary matrix</span>
+<span class="n">te</span> <span class="o">=</span> <span class="n">TransactionEncoder</span><span class="p">()</span>
+<span class="n">te_ary</span> <span class="o">=</span> <span class="n">te</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">te_ary</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">te</span><span class="o">.</span><span class="n">columns_</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Binary Transaction Matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Apply Apriori algorithm</span>
+<span class="n">frequent_itemsets</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Frequent Itemsets:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frequent_itemsets</span><span class="p">)</span>
+
+<span class="c1"># Generate association rules</span>
+<span class="n">rules</span> <span class="o">=</span> <span class="n">association_rules</span><span class="p">(</span><span class="n">frequent_itemsets</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;confidence&quot;</span><span class="p">,</span> <span class="n">min_threshold</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Association Rules:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rules</span><span class="p">[[</span><span class="s1">&#39;antecedents&#39;</span><span class="p">,</span> <span class="s1">&#39;consequents&#39;</span><span class="p">,</span> <span class="s1">&#39;support&#39;</span><span class="p">,</span> <span class="s1">&#39;confidence&#39;</span><span class="p">,</span> <span class="s1">&#39;lift&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</section>
+<section id="visualization">
+<h3>Visualization<a class="headerlink" href="#visualization" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="c1"># Larger dataset for better visualization</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Create synthetic transactions</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">n_transactions</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Apple&#39;</span><span class="p">,</span> <span class="s1">&#39;Banana&#39;</span><span class="p">,</span> <span class="s1">&#39;Orange&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">,</span> <span class="s1">&#39;Bread&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Butter&#39;</span><span class="p">,</span> <span class="s1">&#39;Cheese&#39;</span><span class="p">,</span> <span class="s1">&#39;Yogurt&#39;</span><span class="p">,</span> <span class="s1">&#39;Eggs&#39;</span><span class="p">,</span> <span class="s1">&#39;Coffee&#39;</span><span class="p">]</span>
+
+<span class="c1"># Generate transactions with some patterns</span>
+<span class="n">transactions_large</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_transactions</span><span class="p">):</span>
+    <span class="n">n_items</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">transaction</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_items</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="n">transactions_large</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">transaction</span><span class="p">)</span>
+
+<span class="c1"># Add some intentional patterns</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">):</span>
+    <span class="n">transactions_large</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s1">&#39;Milk&#39;</span><span class="p">,</span> <span class="s1">&#39;Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Butter&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">150</span><span class="p">):</span>
+    <span class="n">transactions_large</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s1">&#39;Coffee&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">])</span>
+
+<span class="c1"># Transform and apply Apriori</span>
+<span class="n">te</span> <span class="o">=</span> <span class="n">TransactionEncoder</span><span class="p">()</span>
+<span class="n">te_ary</span> <span class="o">=</span> <span class="n">te</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">transactions_large</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">transactions_large</span><span class="p">)</span>
+<span class="n">df_large</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">te_ary</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">te</span><span class="o">.</span><span class="n">columns_</span><span class="p">)</span>
+
+<span class="n">frequent_itemsets_large</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">df_large</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">rules_large</span> <span class="o">=</span> <span class="n">association_rules</span><span class="p">(</span><span class="n">frequent_itemsets_large</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;lift&quot;</span><span class="p">,</span> <span class="n">min_threshold</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Visualization 1: Support vs Confidence</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rules_large</span><span class="p">[</span><span class="s1">&#39;support&#39;</span><span class="p">],</span> <span class="n">rules_large</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">],</span>
+            <span class="n">c</span><span class="o">=</span><span class="n">rules_large</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lift&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Support&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Confidence&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Support vs Confidence (colored by Lift)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Visualization 2: Lift distribution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">rules_large</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Lift&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Lift Values&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lift = 1 (Independence)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Print top rules by lift</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top 10 Rules by Lift:&quot;</span><span class="p">)</span>
+<span class="n">top_rules</span> <span class="o">=</span> <span class="n">rules_large</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;lift&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">top_rules</span><span class="p">[[</span><span class="s1">&#39;antecedents&#39;</span><span class="p">,</span> <span class="s1">&#39;consequents&#39;</span><span class="p">,</span> <span class="s1">&#39;support&#39;</span><span class="p">,</span> <span class="s1">&#39;confidence&#39;</span><span class="p">,</span> <span class="s1">&#39;lift&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="fp-growth-algorithm">
+<h2>FP-Growth Algorithm<a class="headerlink" href="#fp-growth-algorithm" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Concept<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>FP-Growth (Frequent Pattern Growth) is more efficient than Apriori as it:</p>
+<ul class="simple">
+<li><p>Avoids candidate generation</p></li>
+<li><p>Uses a compact tree structure (FP-tree)</p></li>
+<li><p>Requires only two database scans</p></li>
+</ul>
+</section>
+<section id="fp-tree-structure">
+<h3>FP-Tree Structure<a class="headerlink" href="#fp-tree-structure" title="Link to this heading">#</a></h3>
+<div class="graphviz"><object data="../_images/graphviz-f1050104c8acf380a0d05de976d4058ee919be8b.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph fptree {
+    rankdir=TB;
+    node [shape=box, style=&quot;rounded,filled&quot;, fillcolor=lightblue];
+
+    root [label=&quot;Root\n{}&quot;, fillcolor=lightgreen];
+
+    bread1 [label=&quot;Bread:4&quot;];
+    milk1 [label=&quot;Milk:3&quot;];
+    diaper1 [label=&quot;Diaper:3&quot;];
+
+    milk2 [label=&quot;Milk:1&quot;];
+    diaper2 [label=&quot;Diaper:1&quot;];
+    beer1 [label=&quot;Beer:3&quot;];
+
+    root -&gt; bread1;
+    bread1 -&gt; milk1;
+    milk1 -&gt; diaper1;
+    diaper1 -&gt; beer1;
+
+    bread1 -&gt; diaper2;
+    diaper2 -&gt; milk2;
+}</p></object></div>
+</section>
+<section id="id2">
+<h3>Algorithm Steps<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Algorithm: FP-Growth
+
+Input:
+  - Transaction database D
+  - Minimum support threshold min_sup
+
+Output:
+  - All frequent itemsets
+
+1. Scan database to find frequent 1-itemsets
+2. Sort items by decreasing support
+3. Build FP-tree:
+   For each transaction:
+     - Sort items by frequency
+     - Insert into FP-tree
+4. Mine FP-tree recursively:
+   For each item in header table:
+     - Generate conditional pattern base
+     - Construct conditional FP-tree
+     - Recursively mine conditional FP-tree
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Implementation<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mlxtend.frequent_patterns</span><span class="w"> </span><span class="kn">import</span> <span class="n">fpgrowth</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="c1"># Compare Apriori vs FP-Growth</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Comparing Apriori vs FP-Growth...&quot;</span><span class="p">)</span>
+
+<span class="c1"># Apriori</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">frequent_apriori</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">df_large</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">apriori_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Apriori: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">frequent_apriori</span><span class="p">)</span><span class="si">}</span><span class="s2"> itemsets found in </span><span class="si">{</span><span class="n">apriori_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+
+<span class="c1"># FP-Growth</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">frequent_fpgrowth</span> <span class="o">=</span> <span class="n">fpgrowth</span><span class="p">(</span><span class="n">df_large</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fpgrowth_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;FP-Growth: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">frequent_fpgrowth</span><span class="p">)</span><span class="si">}</span><span class="s2"> itemsets found in </span><span class="si">{</span><span class="n">fpgrowth_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Speedup: </span><span class="si">{</span><span class="n">apriori_time</span><span class="o">/</span><span class="n">fpgrowth_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-metrics">
+<h2>Advanced Metrics<a class="headerlink" href="#advanced-metrics" title="Link to this heading">#</a></h2>
+<section id="conviction">
+<h3>Conviction<a class="headerlink" href="#conviction" title="Link to this heading">#</a></h3>
+<p>Measures dependency and implication strength:</p>
+<div class="math notranslate nohighlight">
+\[\text{conviction}(X \Rightarrow Y) = \frac{1 - \text{support}(Y)}{1 - \text{confidence}(X \Rightarrow Y)}\]</div>
+<p><strong>Interpretation:</strong></p>
+<ul class="simple">
+<li><p>Higher conviction → stronger rule</p></li>
+<li><p>Conviction = ∞ → perfect implication</p></li>
+</ul>
+</section>
+<section id="kulczynski-measure">
+<h3>Kulczynski Measure<a class="headerlink" href="#kulczynski-measure" title="Link to this heading">#</a></h3>
+<p>Average of two conditional probabilities:</p>
+<div class="math notranslate nohighlight">
+\[\text{Kulc}(X, Y) = \frac{1}{2}\left(\frac{\text{support}(X \cup Y)}{\text{support}(X)} + \frac{\text{support}(X \cup Y)}{\text{support}(Y)}\right)\]</div>
+</section>
+<section id="imbalance-ratio">
+<h3>Imbalance Ratio<a class="headerlink" href="#imbalance-ratio" title="Link to this heading">#</a></h3>
+<p>Measures imbalance in item frequencies:</p>
+<div class="math notranslate nohighlight">
+\[IR(X, Y) = \frac{|\text{support}(X) - \text{support}(Y)|}{\text{support}(X) + \text{support}(Y) - \text{support}(X \cup Y)}\]</div>
+</section>
+</section>
+<section id="real-world-example-market-basket-analysis">
+<h2>Real-World Example: Market Basket Analysis<a class="headerlink" href="#real-world-example-market-basket-analysis" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate realistic supermarket data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="c1"># Define product categories and associations</span>
+<span class="n">dairy</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Milk&#39;</span><span class="p">,</span> <span class="s1">&#39;Butter&#39;</span><span class="p">,</span> <span class="s1">&#39;Cheese&#39;</span><span class="p">,</span> <span class="s1">&#39;Yogurt&#39;</span><span class="p">]</span>
+<span class="n">bakery</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Croissant&#39;</span><span class="p">,</span> <span class="s1">&#39;Bagel&#39;</span><span class="p">]</span>
+<span class="n">beverages</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Coffee&#39;</span><span class="p">,</span> <span class="s1">&#39;Tea&#39;</span><span class="p">,</span> <span class="s1">&#39;Juice&#39;</span><span class="p">,</span> <span class="s1">&#39;Soda&#39;</span><span class="p">]</span>
+<span class="n">snacks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Chips&#39;</span><span class="p">,</span> <span class="s1">&#39;Cookies&#39;</span><span class="p">,</span> <span class="s1">&#39;Chocolate&#39;</span><span class="p">]</span>
+<span class="n">produce</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Apple&#39;</span><span class="p">,</span> <span class="s1">&#39;Banana&#39;</span><span class="p">,</span> <span class="s1">&#39;Orange&#39;</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_transaction</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a realistic transaction with associated products&quot;&quot;&quot;</span>
+    <span class="n">transaction</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># 60% chance of buying from dairy</span>
+    <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.6</span><span class="p">:</span>
+        <span class="n">transaction</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">dairy</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+
+    <span class="c1"># If dairy bought, 70% chance of buying bakery (association)</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">item</span> <span class="ow">in</span> <span class="n">transaction</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dairy</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.7</span><span class="p">:</span>
+            <span class="n">transaction</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">bakery</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># Independent beverage purchase</span>
+    <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+        <span class="n">transaction</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">beverages</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># Snacks and produce</span>
+    <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.3</span><span class="p">:</span>
+        <span class="n">transaction</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">snacks</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.4</span><span class="p">:</span>
+        <span class="n">transaction</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">produce</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">transaction</span><span class="p">))</span>  <span class="c1"># Remove duplicates</span>
+
+<span class="c1"># Generate 5000 transactions</span>
+<span class="n">supermarket_transactions</span> <span class="o">=</span> <span class="p">[</span><span class="n">generate_transaction</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">)]</span>
+
+<span class="c1"># Apply association analysis</span>
+<span class="n">te</span> <span class="o">=</span> <span class="n">TransactionEncoder</span><span class="p">()</span>
+<span class="n">te_ary</span> <span class="o">=</span> <span class="n">te</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">supermarket_transactions</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">supermarket_transactions</span><span class="p">)</span>
+<span class="n">df_market</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">te_ary</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">te</span><span class="o">.</span><span class="n">columns_</span><span class="p">)</span>
+
+<span class="c1"># Find frequent itemsets</span>
+<span class="n">frequent</span> <span class="o">=</span> <span class="n">fpgrowth</span><span class="p">(</span><span class="n">df_market</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Generate rules</span>
+<span class="n">rules_market</span> <span class="o">=</span> <span class="n">association_rules</span><span class="p">(</span><span class="n">frequent</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;lift&quot;</span><span class="p">,</span> <span class="n">min_threshold</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+<span class="n">rules_market</span> <span class="o">=</span> <span class="n">rules_market</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;lift&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Display insights</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top 10 Product Associations:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rules_market</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)[[</span><span class="s1">&#39;antecedents&#39;</span><span class="p">,</span> <span class="s1">&#39;consequents&#39;</span><span class="p">,</span> <span class="s1">&#39;support&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;confidence&#39;</span><span class="p">,</span> <span class="s1">&#39;lift&#39;</span><span class="p">]])</span>
+
+<span class="c1"># Actionable insights</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🛒 Marketing Insights:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rules_market</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">ant</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;antecedents&#39;</span><span class="p">]))</span>
+    <span class="n">con</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;consequents&#39;</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;• Customers buying </span><span class="si">{</span><span class="n">ant</span><span class="si">}</span><span class="s2"> are </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x more likely to buy </span><span class="si">{</span><span class="n">con</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Confidence: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">, Support: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;support&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="comparison-apriori-vs-fp-growth">
+<h2>Comparison: Apriori vs FP-Growth<a class="headerlink" href="#comparison-apriori-vs-fp-growth" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 35.0%" />
+<col style="width: 35.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>Apriori</p></th>
+<th class="head"><p>FP-Growth</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Candidate Generation</p></td>
+<td><p>Yes (multiple passes)</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Database Scans</p></td>
+<td><p>Multiple</p></td>
+<td><p>Two</p></td>
+</tr>
+<tr class="row-even"><td><p>Memory Usage</p></td>
+<td><p>Low</p></td>
+<td><p>Higher (FP-tree)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Speed</p></td>
+<td><p>Slower</p></td>
+<td><p>Faster</p></td>
+</tr>
+<tr class="row-even"><td><p>Best For</p></td>
+<td><p>Small datasets, interpretability</p></td>
+<td><p>Large datasets, efficiency</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="try-this">
+<h2>Try This<a class="headerlink" href="#try-this" title="Link to this heading">#</a></h2>
+<div class="try-this"><p><strong>Exercise 1:</strong> Download a real retail dataset (e.g., Online Retail from UCI) and perform market basket analysis.</p>
+<p><strong>Exercise 2:</strong> Implement the Apriori algorithm from scratch in Python.</p>
+<p><strong>Exercise 3:</strong> Compare execution times of Apriori and FP-Growth on datasets of varying sizes.</p>
+<p><strong>Exercise 4:</strong> Use association rules to build a simple recommendation system.</p>
+</div></section>
+<section id="practical-applications">
+<h2>Practical Applications<a class="headerlink" href="#practical-applications" title="Link to this heading">#</a></h2>
+<p><strong>1. Retail &amp; E-commerce</strong></p>
+<ul class="simple">
+<li><p>Product placement optimization</p></li>
+<li><p>Cross-selling strategies</p></li>
+<li><p>Promotional bundling</p></li>
+</ul>
+<p><strong>2. Healthcare</strong></p>
+<ul class="simple">
+<li><p>Drug interaction analysis</p></li>
+<li><p>Symptom-disease associations</p></li>
+<li><p>Treatment effectiveness patterns</p></li>
+</ul>
+<p><strong>3. Web Mining</strong></p>
+<ul class="simple">
+<li><p>Page navigation patterns</p></li>
+<li><p>Click-stream analysis</p></li>
+<li><p>User behavior modeling</p></li>
+</ul>
+<p><strong>4. Telecommunications</strong></p>
+<ul class="simple">
+<li><p>Service package recommendations</p></li>
+<li><p>Churn prediction patterns</p></li>
+<li><p>Network fault analysis</p></li>
+</ul>
+</section>
+<section id="common-pitfalls">
+<h2>Common Pitfalls<a class="headerlink" href="#common-pitfalls" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Setting thresholds too low:</strong> Generates too many rules</p></li>
+<li><p><strong>Setting thresholds too high:</strong> Misses important patterns</p></li>
+<li><p><strong>Ignoring lift:</strong> High confidence doesn’t mean strong association</p></li>
+<li><p><strong>Spurious correlations:</strong> Always validate with domain knowledge</p></li>
+<li><p><strong>Data sparsity:</strong> Many transactions with few common items</p></li>
+</ol>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Association analysis</strong> discovers patterns in transactional data</p></li>
+<li><p><strong>Support, confidence, and lift</strong> are key metrics</p></li>
+<li><p><strong>Apriori</strong> uses candidate generation with pruning</p></li>
+<li><p><strong>FP-Growth</strong> is more efficient using a tree structure</p></li>
+<li><p>Applications span retail, healthcare, and web analytics</p></li>
+</ul>
+</section>
+<section id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Agrawal, R., &amp; Srikant, R. (1994). Fast algorithms for mining association rules. <em>VLDB</em>.</p></li>
+<li><p>Han, J., et al. (2000). Mining frequent patterns without candidate generation. <em>SIGMOD</em>.</p></li>
+<li><p>Tan, P. N., et al. (2005). <em>Introduction to Data Mining</em>. Chapter 6.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="dimensionality_reduction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Dimensionality Reduction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../examples/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Practical Examples</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology">Terminology</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-transaction-database">Example Transaction Database</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#association-rules">Association Rules</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-formulation">Basic Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support">Support</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence">Confidence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lift">Lift</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apriori-algorithm">Apriori Algorithm</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concept">Concept</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-steps">Algorithm Steps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#candidate-generation">Candidate Generation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fp-growth-algorithm">FP-Growth Algorithm</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Concept</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fp-tree-structure">FP-Tree Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Algorithm Steps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-metrics">Advanced Metrics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conviction">Conviction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kulczynski-measure">Kulczynski Measure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imbalance-ratio">Imbalance Ratio</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-example-market-basket-analysis">Real-World Example: Market Basket Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-apriori-vs-fp-growth">Comparison: Apriori vs FP-Growth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-this">Try This</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-applications">Practical Applications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls">Common Pitfalls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Ashwini Kumar Mathur.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

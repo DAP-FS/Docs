@@ -1,0 +1,944 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Viva Voce Questions &#8212; Unsupervised ML Course</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b18a5cff" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=d6b6a36a"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]], "processEscapes": true, "processEnvironments": true}, "options": {"skipHtmlTags": ["script", "noscript", "style", "textarea", "pre"]}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'viva/viva_questions';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="References and Resources" href="../references.html" />
+    <link rel="prev" title="Viva Questions" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">📚 Course Material for Unsupervised Machine Learning - Fall 2025</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/course_logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/course_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Unsupervised ML</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../modules/index.html">
+    Core Modules
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Practical Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../labs/index.html">
+    Laboratory Assignments
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../datasets/index.html">
+    Datasets
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Viva Questions
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../references.html">
+    References and Resources
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/USERNAME/unsupervised-ml-docs" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://colab.research.google.com/" title="Colab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-laptop-code fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Colab</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../modules/index.html">
+    Core Modules
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Practical Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../labs/index.html">
+    Laboratory Assignments
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../datasets/index.html">
+    Datasets
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Viva Questions
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../references.html">
+    References and Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/USERNAME/unsupervised-ml-docs" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://colab.research.google.com/" title="Colab" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-laptop-code fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Colab</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Viva Voce Questions</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Viva Questions</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Viva Voce Questions</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="viva-voce-questions">
+<h1>Viva Voce Questions<a class="headerlink" href="#viva-voce-questions" title="Link to this heading">#</a></h1>
+<p>Comprehensive questions for laboratory viva examinations covering all unsupervised learning topics.</p>
+<section id="general-concepts">
+<h2>General Concepts<a class="headerlink" href="#general-concepts" title="Link to this heading">#</a></h2>
+<p><strong>Q1: What is unsupervised learning? How does it differ from supervised learning?</strong></p>
+<p><strong>Answer:</strong> Unsupervised learning discovers patterns in data without labeled outputs. Unlike supervised learning (which learns from input-output pairs), unsupervised learning only has input data and must find structure, groupings, or representations on its own.</p>
+<p>Key differences:</p>
+<ul class="simple">
+<li><p>No labels/targets in unsupervised learning</p></li>
+<li><p>Goal is pattern discovery vs. prediction</p></li>
+<li><p>Harder to evaluate (no ground truth)</p></li>
+<li><p>Examples: clustering, dimensionality reduction vs. classification, regression</p></li>
+</ul>
+<p><strong>Q2: What are the main types of unsupervised learning?</strong></p>
+<p><strong>Answer:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Clustering:</strong> Grouping similar data points (K-Means, DBSCAN, Hierarchical)</p></li>
+<li><p><strong>Dimensionality Reduction:</strong> Reducing feature space (PCA, t-SNE, Autoencoders)</p></li>
+<li><p><strong>Association Rule Mining:</strong> Finding relationships (Apriori, FP-Growth)</p></li>
+<li><p><strong>Anomaly Detection:</strong> Identifying outliers (Isolation Forest, One-Class SVM)</p></li>
+<li><p><strong>Density Estimation:</strong> Modeling data distribution (GMM, KDE)</p></li>
+</ol>
+<p><strong>Q3: Why is unsupervised learning important?</strong></p>
+<p><strong>Answer:</strong></p>
+<ul class="simple">
+<li><p>Most real-world data is unlabeled (labeling is expensive)</p></li>
+<li><p>Discovers hidden patterns humans might miss</p></li>
+<li><p>Preprocessing step for supervised learning</p></li>
+<li><p>Exploratory data analysis</p></li>
+<li><p>Feature engineering and data compression</p></li>
+<li><p>Anomaly detection in security/fraud</p></li>
+</ul>
+</section>
+<section id="clustering-questions">
+<h2>Clustering Questions<a class="headerlink" href="#clustering-questions" title="Link to this heading">#</a></h2>
+<p><strong>Q4: Explain the K-Means algorithm step by step.</strong></p>
+<p><strong>Answer:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Initialize:</strong> Randomly select K centroids</p></li>
+<li><p><strong>Assignment Step:</strong> Assign each point to nearest centroid (Euclidean distance)</p></li>
+<li><p><strong>Update Step:</strong> Recalculate centroids as mean of assigned points</p></li>
+<li><p><strong>Repeat:</strong> Continue steps 2-3 until convergence (centroids don’t move significantly)</p></li>
+</ol>
+<p>Mathematical objective:</p>
+<div class="math notranslate nohighlight">
+\[\min \sum_{i=1}^{k}\sum_{x \in C_i} ||x - \mu_i||^2\]</div>
+<p><strong>Q5: What are the limitations of K-Means?</strong></p>
+<p><strong>Answer:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Must specify K in advance</strong> - requires domain knowledge or trials</p></li>
+<li><p><strong>Sensitive to initialization</strong> - different starting points give different results</p></li>
+<li><p><strong>Assumes spherical clusters</strong> - fails with elongated or irregular shapes</p></li>
+<li><p><strong>Sensitive to outliers</strong> - outliers pull centroids</p></li>
+<li><p><strong>Not suitable for categorical data</strong> - requires numerical features</p></li>
+<li><p><strong>Curse of dimensionality</strong> - performance degrades in high dimensions</p></li>
+</ol>
+<p><strong>Q6: How do you determine the optimal number of clusters K?</strong></p>
+<p><strong>Answer:</strong></p>
+<p><strong>Method 1: Elbow Method</strong>
+- Plot WCSS vs K
+- Look for “elbow” where decrease slows
+- Choose K at elbow point</p>
+<p><strong>Method 2: Silhouette Analysis</strong>
+- Calculate silhouette score for each K
+- Choose K with highest average silhouette score
+- Score range: [-1, 1], higher is better</p>
+<p><strong>Method 3: Gap Statistic</strong>
+- Compare WCSS with expected WCSS from random data
+- Choose K where gap is maximized</p>
+<p><strong>Method 4: Domain Knowledge</strong>
+- Use business/scientific context
+- Sometimes K is predetermined</p>
+<p><strong>Q7: What is the difference between K-Means and K-Medoids?</strong></p>
+<p><strong>Answer:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>K-Means</p></th>
+<th class="head"><p>K-Medoids</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Centroid</p></td>
+<td><p>Mean of points (may not be actual data point)</p></td>
+<td><p>Actual data point (medoid)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Robustness</p></td>
+<td><p>Sensitive to outliers</p></td>
+<td><p>More robust to outliers</p></td>
+</tr>
+<tr class="row-even"><td><p>Distance Metric</p></td>
+<td><p>Only Euclidean</p></td>
+<td><p>Any distance metric</p></td>
+</tr>
+<tr class="row-odd"><td><p>Complexity</p></td>
+<td><p>O(nki)</p></td>
+<td><p>O(n²) per iteration</p></td>
+</tr>
+<tr class="row-even"><td><p>Best for</p></td>
+<td><p>Large datasets, numerical data</p></td>
+<td><p>Mixed data types, outliers present</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Q8: Explain DBSCAN algorithm and its advantages.</strong></p>
+<p><strong>Answer:</strong></p>
+<p><strong>DBSCAN (Density-Based Spatial Clustering of Applications with Noise)</strong></p>
+<p><strong>Parameters:</strong>
+- ε (epsilon): Maximum distance for neighborhood
+- MinPts: Minimum points to form dense region</p>
+<p><strong>Point Types:</strong>
+1. <strong>Core point:</strong> Has ≥ MinPts neighbors within ε
+2. <strong>Border point:</strong> In neighborhood of core point, but &lt; MinPts neighbors
+3. <strong>Noise:</strong> Neither core nor border</p>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>No need to specify number of clusters</p></li>
+<li><p>Handles arbitrary shapes (non-spherical)</p></li>
+<li><p>Identifies noise/outliers</p></li>
+<li><p>Robust to outliers</p></li>
+<li><p>Single pass through data</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p>Sensitive to ε and MinPts</p></li>
+<li><p>Struggles with varying densities</p></li>
+<li><p>Computationally expensive for large datasets</p></li>
+</ul>
+<p><strong>Q9: What is hierarchical clustering? Types?</strong></p>
+<p><strong>Answer:</strong></p>
+<p>Hierarchical clustering creates a tree-like structure (dendrogram) showing nested clusters.</p>
+<p><strong>Types:</strong></p>
+<p><strong>1. Agglomerative (Bottom-Up):</strong>
+- Start: Each point is a cluster
+- Iteratively merge closest clusters
+- End: All points in one cluster</p>
+<p><strong>2. Divisive (Top-Down):</strong>
+- Start: All points in one cluster
+- Iteratively split clusters
+- End: Each point is its own cluster</p>
+<p><strong>Linkage Criteria:</strong>
+- <strong>Single:</strong> <span class="math notranslate nohighlight">\(\min d(a,b)\)</span>
+- <strong>Complete:</strong> <span class="math notranslate nohighlight">\(\max d(a,b)\)</span>
+- <strong>Average:</strong> Mean of all pairwise distances
+- <strong>Ward:</strong> Minimizes within-cluster variance</p>
+<p><strong>Q10: What is the Silhouette Score?</strong></p>
+<p><strong>Answer:</strong></p>
+<p>Silhouette score measures how well each point fits its cluster:</p>
+<div class="math notranslate nohighlight">
+\[s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}\]</div>
+<p>where:
+- <span class="math notranslate nohighlight">\(a(i)\)</span> = average distance to points in same cluster
+- <span class="math notranslate nohighlight">\(b(i)\)</span> = minimum average distance to points in other clusters</p>
+<p><strong>Interpretation:</strong>
+- <strong>1:</strong> Point very well clustered
+- <strong>0:</strong> Point on cluster boundary
+- <strong>-1:</strong> Point likely in wrong cluster</p>
+<p><strong>Average silhouette score</strong> across all points indicates overall clustering quality.</p>
+</section>
+<section id="dimensionality-reduction-questions">
+<h2>Dimensionality Reduction Questions<a class="headerlink" href="#dimensionality-reduction-questions" title="Link to this heading">#</a></h2>
+<p><strong>Q11: What is the curse of dimensionality?</strong></p>
+<p><strong>Answer:</strong></p>
+<p>The curse of dimensionality refers to phenomena that arise when analyzing data in high-dimensional spaces:</p>
+<p><strong>Problems:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Data sparsity:</strong> Points become increasingly distant</p></li>
+<li><p><strong>Computational cost:</strong> Exponential increase in complexity</p></li>
+<li><p><strong>Overfitting:</strong> Models memorize noise</p></li>
+<li><p><strong>Distance metrics break:</strong> All distances become similar</p></li>
+<li><p><strong>Visualization impossible:</strong> Can’t plot &gt;3 dimensions</p></li>
+</ol>
+<p><strong>Example:</strong> In high dimensions, nearest and farthest neighbors have similar distances!</p>
+<p><strong>Solutions:</strong>
+- Dimensionality reduction (PCA, t-SNE)
+- Feature selection
+- Regularization</p>
+<p><strong>Q12: Explain Principal Component Analysis (PCA).</strong></p>
+<p><strong>Answer:</strong></p>
+<p>PCA finds orthogonal directions (principal components) capturing maximum variance.</p>
+<p><strong>Steps:</strong></p>
+<ol class="arabic simple">
+<li><p><a href="#id1"><span class="problematic" id="id2">**</span></a>Center ** <span class="math notranslate nohighlight">\(\bar{X} = X - \mu\)</span></p></li>
+<li><p><strong>Compute covariance:</strong> <span class="math notranslate nohighlight">\(C = \frac{1}{n-1}\bar{X}^T\bar{X}\)</span></p></li>
+<li><p><strong>Eigenvalue decomposition:</strong> <span class="math notranslate nohighlight">\(C = V\Lambda V^T\)</span></p></li>
+<li><p><strong>Select top-k eigenvectors:</strong> Largest eigenvalues</p></li>
+<li><p><strong>Project:</strong> <span class="math notranslate nohighlight">\(Z = \bar{X}W\)</span></p></li>
+</ol>
+<p><strong>Key Properties:</strong></p>
+<ul class="simple">
+<li><p>Linear transformation</p></li>
+<li><p>Components are orthogonal</p></li>
+<li><p>Unsupervised (no labels needed)</p></li>
+<li><p>Explained variance: <span class="math notranslate nohighlight">\(\frac{\lambda_i}{\sum \lambda_j}\)</span></p></li>
+</ul>
+<p><strong>Applications:</strong>
+- Data visualization
+- Noise reduction
+- Feature extraction
+- Compression</p>
+<p><strong>Q13: What is the difference between PCA and t-SNE?</strong></p>
+<p><strong>Answer:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>PCA</p></th>
+<th class="head"><p>t-SNE</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Type</p></td>
+<td><p>Linear</p></td>
+<td><p>Non-linear</p></td>
+</tr>
+<tr class="row-odd"><td><p>Objective</p></td>
+<td><p>Maximize variance</p></td>
+<td><p>Preserve local structure</p></td>
+</tr>
+<tr class="row-even"><td><p>Output</p></td>
+<td><p>Any dimension</p></td>
+<td><p>Typically 2-3D (visualization)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Speed</p></td>
+<td><p>Fast O(nd²)</p></td>
+<td><p>Slow O(n²)</p></td>
+</tr>
+<tr class="row-even"><td><p>Global structure</p></td>
+<td><p>Preserves</p></td>
+<td><p>May distort</p></td>
+</tr>
+<tr class="row-odd"><td><p>Deterministic</p></td>
+<td><p>Yes</p></td>
+<td><p>No (random initialization)</p></td>
+</tr>
+<tr class="row-even"><td><p>Inverse transform</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Best for</p></td>
+<td><p>General reduction</p></td>
+<td><p>Visualization</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Q14: What are eigenvectors and eigenvalues in PCA context?</strong></p>
+<p><strong>Answer:</strong></p>
+<p>For covariance matrix <span class="math notranslate nohighlight">\(C\)</span> and eigenvector <span class="math notranslate nohighlight">\(v\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[Cv = \lambda v\]</div>
+<p><strong>Eigenvector (:math:`v`):</strong>
+- Direction of principal component
+- Orthogonal to other eigenvectors
+- Unit vector</p>
+<p><strong>Eigenvalue (:math:`lambda`):</strong>
+- Variance along that direction
+- Larger eigenvalue = more important component
+- Sum of all eigenvalues = total variance</p>
+<p><strong>Intuition:</strong> Eigenvectors show directions of maximum spread; eigenvalues show how much spread.</p>
+<p><strong>Q15: Explain autoencoders and their use in dimensionality reduction.</strong></p>
+<p><strong>Answer:</strong></p>
+<p>Autoencoders are neural networks that learn compressed representations through an encoder-decoder architecture.</p>
+<p><strong>Architecture:</strong>
+- <strong>Encoder:</strong> <span class="math notranslate nohighlight">\(z = f(Wx + b)\)</span> - compresses input
+- <strong>Bottleneck:</strong> <span class="math notranslate nohighlight">\(z\)</span> - low-dimensional representation
+- <strong>Decoder:</strong> <span class="math notranslate nohighlight">\(\hat{x} = g(W'z + b')\)</span> - reconstructs input</p>
+<p><strong>Loss:</strong> Reconstruction error <span class="math notranslate nohighlight">\(||x - \hat{x}||^2\)</span></p>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>Non-linear transformations</p></li>
+<li><p>Learns task-specific features</p></li>
+<li><p>Can handle complex patterns</p></li>
+<li><p>Flexible architecture</p></li>
+</ul>
+<p><strong>Types:</strong></p>
+<ul class="simple">
+<li><p><strong>Vanilla:</strong> Basic encoder-decoder</p></li>
+<li><p><strong>Denoising:</strong> Learns to remove noise</p></li>
+<li><p><strong>Variational (VAE):</strong> Probabilistic latent space</p></li>
+<li><p><strong>Sparse:</strong> Encourages sparse activations</p></li>
+</ul>
+</section>
+<section id="association-rules-questions">
+<h2>Association Rules Questions<a class="headerlink" href="#association-rules-questions" title="Link to this heading">#</a></h2>
+<p><strong>Q16: What are association rules? Explain support, confidence, and lift.</strong></p>
+<p><strong>Answer:</strong></p>
+<p>Association rules find relationships: <span class="math notranslate nohighlight">\(X \Rightarrow Y\)</span></p>
+<p><strong>Support:</strong></p>
+<div class="math notranslate nohighlight">
+\[\text{support}(X \Rightarrow Y) = \frac{\text{# transactions with } X \cup Y}{\text{total transactions}}\]</div>
+<p>Measures frequency of itemset.</p>
+<p><strong>Confidence:</strong></p>
+<div class="math notranslate nohighlight">
+\[\text{confidence}(X \Rightarrow Y) = \frac{\text{support}(X \cup Y)}{\text{support}(X)}\]</div>
+<p>Measures reliability of the rule.</p>
+<p><strong>Lift:</strong></p>
+<div class="math notranslate nohighlight">
+\[\text{lift}(X \Rightarrow Y) = \frac{\text{confidence}(X \Rightarrow Y)}{\text{support}(Y)}\]</div>
+<p>Measures strength of association:
+- Lift = 1: No association (independent)
+- Lift &gt; 1: Positive association
+- Lift &lt; 1: Negative association</p>
+<p><strong>Q17: Explain the Apriori algorithm.</strong></p>
+<p><strong>Answer:</strong></p>
+<p>Apriori finds frequent itemsets using the principle: <em>“All subsets of a frequent itemset must also be frequent.”</em></p>
+<p><strong>Algorithm:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Find frequent 1-itemsets</strong> (scan database)</p></li>
+<li><p><strong>For k = 2 to max:</strong></p>
+<ol class="loweralpha simple">
+<li><p><strong>Join:</strong> Generate k-itemsets from (k-1)-itemsets</p></li>
+<li><p><strong>Prune:</strong> Remove candidates with infrequent subsets</p></li>
+<li><p><strong>Scan:</strong> Count support in database</p></li>
+<li><p><strong>Filter:</strong> Keep itemsets with support ≥ min_support</p></li>
+</ol>
+</li>
+<li><p><strong>Generate rules</strong> from frequent itemsets</p></li>
+</ol>
+<p><strong>Example:</strong></p>
+<p>If <span class="math notranslate nohighlight">\(\{A, B, C\}\)</span> is frequent, then <span class="math notranslate nohighlight">\(\{A, B\}\)</span>, <span class="math notranslate nohighlight">\(\{A, C\}\)</span>, <span class="math notranslate nohighlight">\(\{B, C\}\)</span>, <span class="math notranslate nohighlight">\(\{A\}\)</span>, <span class="math notranslate nohighlight">\(\{B\}\)</span>, <span class="math notranslate nohighlight">\(\{C\}\)</span> must all be frequent.</p>
+<p><strong>Q18: Compare Apriori and FP-Growth.</strong></p>
+<p><strong>Answer:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>Apriori</p></th>
+<th class="head"><p>FP-Growth</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Candidate generation</p></td>
+<td><p>Yes (many candidates)</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Database scans</p></td>
+<td><p>Multiple (k+1 for k-itemsets)</p></td>
+<td><p>Two</p></td>
+</tr>
+<tr class="row-even"><td><p>Data structure</p></td>
+<td><p>None (or hash tree)</p></td>
+<td><p>FP-tree (compact)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Memory</p></td>
+<td><p>Low</p></td>
+<td><p>Higher (tree structure)</p></td>
+</tr>
+<tr class="row-even"><td><p>Speed</p></td>
+<td><p>Slower (many scans)</p></td>
+<td><p>Faster</p></td>
+</tr>
+<tr class="row-odd"><td><p>Scalability</p></td>
+<td><p>Poor for large datasets</p></td>
+<td><p>Better</p></td>
+</tr>
+<tr class="row-even"><td><p>Interpretability</p></td>
+<td><p>Easier</p></td>
+<td><p>More complex</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="practical-questions">
+<h2>Practical Questions<a class="headerlink" href="#practical-questions" title="Link to this heading">#</a></h2>
+<p><strong>Q19: Your K-Means model gives different results each time. Why?</strong></p>
+<p><strong>Answer:</strong></p>
+<p><strong>Reason:</strong> Random initialization of centroids.</p>
+<p><strong>Solutions:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Set random_state:</strong> Ensures reproducibility</p></li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Viva Questions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../references.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">References and Resources</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-concepts">General Concepts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-questions">Clustering Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction-questions">Dimensionality Reduction Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#association-rules-questions">Association Rules Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-questions">Practical Questions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Ashwini Kumar Mathur.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
